@@ -71,9 +71,14 @@ void loopButtonInput() {
         }
         delay(lightSpeed);
       }
+      setRandomLight();
       shouldLoopLights = true;
     }
   }
+}
+
+void setRandomLight() {
+  currentLight = random(LIGHTS_START, LIGHTS_END);
 }
 
 void turnOffLights() {
