@@ -7,6 +7,8 @@ class AsyncLightRow {
  public:
   AsyncLightRow(unsigned int start, unsigned int end, unsigned int speed);
   void loop();
+  void start();
+  void stop();
  private:
   unsigned int _start;
   unsigned int _end;
@@ -15,6 +17,7 @@ class AsyncLightRow {
   unsigned int _currentLight;
   unsigned int _prevLight;
   bool _forwards;
+  bool _toLoop;
 };
 
 #endif

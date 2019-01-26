@@ -1,12 +1,21 @@
 #include <AsyncLightRow.h>
 
 AsyncLightRow asyncLightRow(0, 11, 500);
+boolean buttonPressed = false;
+int buttonPin = 12;
 
 void setup() {
-  // put your setup code here, to run once:
+  pinMode(buttonPin, INPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  if (digitalRead(buttonPin) == HIGH) {
+    buttonPressed = !buttonPressed;
+  }
+  if (buttonPressed) {
+    asyncLightRow.stop();
+  } else {
+    asyncLightRow.start();
+  }
   asyncLightRow.loop();
 }

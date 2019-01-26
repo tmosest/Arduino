@@ -9,6 +9,7 @@ AsyncLightRow::AsyncLightRow(unsigned int start, unsigned int end, unsigned int 
   _prevLight = _start;
   _currentLight = _start;
   _previousMillis = 0;
+  this->start();
   for (int i = start; i < end; i++) {
     pinMode(i, OUTPUT);
   }
@@ -20,7 +21,7 @@ void AsyncLightRow::loop() {
   // the interval at which you want to blink the LED.
   unsigned long currentMillis = millis();
 
-  if (currentMillis - _previousMillis >= _speed) {
+  if (_toLoop && currentMillis - _previousMillis >= _speed) {
     // save the last time you blinked the LED
     _previousMillis = currentMillis;
     digitalWrite(_prevLight, LOW);
@@ -37,4 +38,12 @@ void AsyncLightRow::loop() {
       _currentLight -= 1;
     }
   }
+}
+
+void AsyncLightRow::start() {
+  _toLoop = true;
+}
+
+void AsyncLightRow::stop() {
+  _toLoop = false;
 }
