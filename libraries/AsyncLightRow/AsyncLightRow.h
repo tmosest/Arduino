@@ -11,7 +11,7 @@ class AsyncLightRow {
   unsigned int _start;
   unsigned int _end;
   unsigned int _speed;
-  unsigned int _previousMillis;
+  unsigned long _previousMillis;
   unsigned int _currentLight;
   unsigned int _prevLight;
   bool _forwards;
