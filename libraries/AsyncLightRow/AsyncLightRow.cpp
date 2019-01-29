@@ -9,10 +9,10 @@ AsyncLightRow::AsyncLightRow(unsigned int start, unsigned int end, unsigned int 
   _prevLight = _start;
   _currentLight = _start;
   _previousMillis = 0;
-  this->start();
-  for (int i = start; i < end; i++) {
+  for (int i = _start; i < _end; i++) {
     pinMode(i, OUTPUT);
   }
+  this->start();
 }
 
 void AsyncLightRow::loop() {
@@ -46,4 +46,8 @@ void AsyncLightRow::start() {
 
 void AsyncLightRow::stop() {
   _toLoop = false;
+}
+
+void AsyncLightRow::updateSpeed(int speed) {
+  _speed = speed;
 }
