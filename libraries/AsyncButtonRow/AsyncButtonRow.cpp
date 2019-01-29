@@ -5,8 +5,8 @@ AsyncButtonRow::AsyncButtonRow(unsigned int start, unsigned int end, unsigned in
   _start = start;
   _end = end;
   _speed = speed;
-  _states = new bool[_end - _start];
-  for (int i = _start; i < _end; i++) {
+  _states = new bool[buttonCount()];
+  for (int i = _start; i <= _end; i++) {
     pinMode(i, INPUT);
   }
 }
@@ -19,13 +19,13 @@ bool* AsyncButtonRow::loop() {
 
   if (currentMillis - _previousMillis >= _speed) {
     _previousMillis = currentMillis;
-    for (int i = _start; i < _end; i++) {
+    for (int i = _start; i <= _end; i++) {
       _states[i - _start] = (digitalRead(i) == HIGH);
     }
     return _states;
   }
 
-  for (int i = _start; i < _end; i++) {
+  for (int i = _start; i <= _end; i++) {
     _states[i - _start] = false;
   }
   return _states;
@@ -34,3 +34,8 @@ bool* AsyncButtonRow::loop() {
 void AsyncButtonRow::updateSpeed(int speed) {
   _speed = speed;
 }
+
+int AsyncButtonRow::buttonCount() {
+  return _end - _start + 1;
+}
+

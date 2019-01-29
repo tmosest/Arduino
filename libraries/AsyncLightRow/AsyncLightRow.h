@@ -9,6 +9,7 @@ class AsyncLightRow {
   void loop();
   void start();
   void stop();
+  void turnOffLights();
   void updateSpeed(int speed);
  private:
   unsigned int _start;

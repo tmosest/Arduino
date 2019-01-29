@@ -8,6 +8,7 @@ class AsyncButtonRow {
     AsyncButtonRow(unsigned int start, unsigned int end, unsigned int speed);
     bool* loop();
     void updateSpeed(int speed);
+    int buttonCount();
   private:
     bool* _states;
     unsigned int _start;

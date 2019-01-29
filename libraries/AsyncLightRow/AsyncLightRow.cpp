@@ -9,7 +9,7 @@ AsyncLightRow::AsyncLightRow(unsigned int start, unsigned int end, unsigned int 
   _prevLight = _start;
   _currentLight = _start;
   _previousMillis = 0;
-  for (int i = _start; i < _end; i++) {
+  for (int i = _start; i <= _end; i++) {
     pinMode(i, OUTPUT);
   }
   this->start();
@@ -29,7 +29,7 @@ void AsyncLightRow::loop() {
     _prevLight = _currentLight;
     if (_currentLight == _start) {
       _forwards = true;
-    } else if (_currentLight == _end - 1) {
+    } else if (_currentLight == _end) {
       _forwards = false;
     }
     if (_forwards) {
@@ -46,6 +46,12 @@ void AsyncLightRow::start() {
 
 void AsyncLightRow::stop() {
   _toLoop = false;
+}
+
+void AsyncLightRow::turnOffLights() {
+  for (int i = _start; i <= _end; i++) {
+    digitalWrite(_prevLight, LOW);
+  }
 }
 
 void AsyncLightRow::updateSpeed(int speed) {
