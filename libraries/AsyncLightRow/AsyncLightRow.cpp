@@ -44,6 +44,14 @@ void AsyncLightRow::start() {
   _toLoop = true;
 }
 
+void AsyncLightRow::startRandom() {
+  _currentLight = rand() % (_end) + _start;
+  _prevLight = _currentLight;
+  _forwards = (rand() % 1) == 0;
+  start();
+}
+
+
 void AsyncLightRow::stop() {
   _toLoop = false;
 }
@@ -57,3 +65,33 @@ void AsyncLightRow::turnOffLights() {
 void AsyncLightRow::updateSpeed(int speed) {
   _speed = speed;
 }
+
+void AsyncLightRow::blinkLights(int lights[], int n, int times) {
+  for (int t = 0; t < times; t++) {
+    for (int i = 0; i < n; i++) {
+      if (lights[i] >= _start && lights[i] <= _end) {
+        digitalWrite(lights[i], HIGH);
+      }
+    }
+    delay(_speed);
+    for (int i = 0; i < n; i++) {
+      if (lights[i] >= _start && lights[i] <= _end) {
+        digitalWrite(lights[i], LOW);
+      }
+    }
+    delay(_speed);
+  }
+}
+
+unsigned int AsyncLightRow::getStartingLightIndex() {
+  return _start;
+}
+
+unsigned int AsyncLightRow::getEndingLightIndex() {
+  return _end;
+}
+
+unsigned int AsyncLightRow::getCurrentLight() {
+  return _prevLight;
+}
+

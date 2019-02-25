@@ -1,8 +1,8 @@
 #include <AsyncButtonRow.h>
 #include <AsyncLightRow.h>
 
-AsyncLightRow asyncLightRow(0, 11, 500);
-AsyncButtonRow asyncButtonRow(12, 14, 500);
+AsyncLightRow asyncLightRow(0, 10, 500);
+AsyncButtonRow asyncButtonRow(12, 13, 500);
 
 boolean buttonPressed = false;
 int lightSpeed = 500;

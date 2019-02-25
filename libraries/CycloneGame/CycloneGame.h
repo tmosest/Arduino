@@ -15,12 +15,20 @@ class CycloneGame {
   );
   void loop();
  private:
+  int _firstLight;
+  int _lastLight;
+  unsigned int _gameSpeed = 75;
   unsigned int _menuSpeed = 500;
-  bool playing;
-  bool* players;
+  int _winningScore = 5;
+  bool _playing;
+  bool* _players;
+  int* _score;
+  int _numPlayers;
   AsyncButtonRow* _asyncButtonRow;
   AsyncLightRow* _asyncLightRow;
-  void menuLoop();
+  void _menuLoop();
+  void _gameLoop();
+  int* _startAndEnd;
 };
 
 #endif
